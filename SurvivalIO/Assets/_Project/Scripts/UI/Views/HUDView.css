@@ -1,0 +1,591 @@
+/* ============================================================================
+   MODULE: SurvivalIO/Assets/_Project/Scripts/UI/Views/HUDView.css
+   Giao diện Trong Trận Đấu (In-Game HUD) Chuẩn Đẳng Cấp SurvivorIO:
+   - Thanh Chakra EXP Trải Dài 100% Full Màn Hình Ở Mép Trên Cùng
+   - Cụm Sinh Lực, Avatar & 2 Hàng 5+5 Slot Nhẫn Thuật/Thuộc Tính Nép Sát Góc Trái
+   - Đồng Hồ Anime Căn Chính Giữa Trên Cao
+   - Thống Kê Hạ Địch & Đá Quý Góc Phải
+   ============================================================================ */
+
+/* ==========================================
+   1. THANH CHAKRA EXP TRẢI DÀI FULL 100%
+   ========================================== */
+.hud-exp-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100% !important;
+    z-index: 30;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.hud-exp-track {
+    position: relative;
+    width: 100% !important;
+    height: 1.15rem;
+    background: rgba(8, 13, 24, 0.95);
+    border-radius: 0 !important;
+    border: none !important;
+    border-bottom: 2px solid rgba(56, 189, 248, 0.75) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 16px rgba(56, 189, 248, 0.3) !important;
+    overflow: hidden;
+}
+
+.hud-exp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1d4ed8 0%, #0284c7 35%, #38bdf8 70%, #67e8f9 100%);
+    transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+/* Vệt sáng lấp lánh (Shimmer animation) chạy dọc toàn màn hình */
+.hud-exp-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.45) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: expShimmer 2.4s infinite linear;
+    pointer-events: none;
+}
+
+@keyframes expShimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Cấp bậc Neon Cyan Glow */
+.neon-cyan-text {
+    color: #67e8f9;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 8px rgba(34, 211, 238, 0.85), 0 0 16px rgba(6, 182, 212, 0.6);
+}
+
+/* ==========================================
+   2. KHUNG CHỨA NỘI DUNG DƯỚI THANH EXP
+   Khoảng đệm 12px bên dưới thanh EXP, bảo đảm
+   không bị che khuất viền trên & bo góc 3 bảng
+   ========================================== */
+.hud-content-wrapper {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: calc(1.15rem + 12px) !important; /* Đệm cách đáy thanh EXP 12px chuẩn xác */
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+.hud-main-top-row {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    pointer-events: none;
+}
+
+/* ==========================================
+   3. KHUNG HUD GÓC TRÁI: AVATAR + HP + 2 HÀNG SLOTS (NÉP SÁT GÓC TRÁI)
+   ========================================== */
+.hud-glass-card,
+.forehead-protector-box {
+    position: relative;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(10, 15, 30, 0.78);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 0.55rem 0.75rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.55), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                0 0 20px rgba(249, 115, 22, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin-left: 0 !important;
+}
+
+.hud-glass-card:hover {
+    border-color: rgba(251, 146, 60, 0.35);
+    box-shadow: 0 12px 36px 0 rgba(0, 0, 0, 0.65),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25),
+                0 0 25px rgba(249, 115, 22, 0.16);
+}
+
+/* Đinh tán kim loại cũ ẩn hoàn toàn */
+.protector-rivet {
+    display: none;
+}
+
+/* Avatar Xoáy Konoha Bo Tròn Viền Phát Sáng */
+.hud-avatar-circle {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 35% 35%, #ea580c 0%, #dc2626 65%, #991b1b 100%);
+    border: 2px solid rgba(251, 191, 36, 0.9);
+    box-shadow: 0 0 14px rgba(249, 115, 22, 0.65), inset 0 0 8px rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+    cursor: default;
+}
+
+.hud-avatar-circle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(251, 146, 60, 0.95), inset 0 0 10px rgba(255, 255, 255, 0.6);
+}
+
+.hud-avatar-symbol {
+    font-size: 21px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+}
+
+.hud-avatar-ring-pulse {
+    position: absolute;
+    inset: -3px;
+    border-radius: 9999px;
+    border: 1.5px solid rgba(251, 191, 36, 0.45);
+    animation: avatarRingAura 2.8s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes avatarRingAura {
+    0% { transform: scale(0.96); opacity: 0.3; }
+    100% { transform: scale(1.08); opacity: 0.85; filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.9)); }
+}
+
+/* Thanh Máu HP mềm mại, Gradient đỏ cam sang vàng */
+.hud-hp-badge {
+    text-shadow: 0 0 8px rgba(244, 63, 94, 0.6);
+}
+
+.hud-hp-number {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: rgba(254, 243, 199, 0.95);
+    text-shadow: 0 0 6px rgba(245, 158, 11, 0.5);
+}
+
+.hp-glass-bar-track {
+    position: relative;
+    width: 100%;
+    height: 11px;
+    background: rgba(15, 23, 42, 0.7);
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+    box-shadow: inset 0 1.5px 4px rgba(0, 0, 0, 0.6);
+}
+
+.hp-glass-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e11d48 0%, #f97316 40%, #f59e0b 75%, #fde047 100%);
+    border-radius: 9999px;
+    transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    box-shadow: 0 0 14px rgba(249, 115, 22, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.hp-glass-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, transparent 100%);
+    border-radius: 9999px;
+    pointer-events: none;
+}
+
+.hp-glass-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.28) 50%, transparent 100%);
+    transform: translateX(-100%);
+    animation: hpBarShimmer 2.8s infinite ease-in-out;
+}
+
+@keyframes hpBarShimmer {
+    0% { transform: translateX(-100%); }
+    60%, 100% { transform: translateX(100%); }
+}
+
+/* Hiệu ứng nhịp tim đập nhẹ khi HP < 30% */
+.heartbeat-low-hp {
+    animation: heartPulse 1.1s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+@keyframes heartPulse {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.6));
+    }
+    14% {
+        transform: scale(1.035);
+        filter: drop-shadow(0 0 14px rgba(239, 68, 68, 1));
+    }
+    28% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.6));
+    }
+    42% {
+        transform: scale(1.025);
+        filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.85));
+    }
+    70%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.6));
+    }
+}
+
+/* ==========================================
+   3. HUD 5+5 EQUIPMENT SLOTS: NHẪN THUẬT & THUỘC TÍNH
+   ========================================== */
+.hud-equipment-slots-container {
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 0.45rem 0.55rem;
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.35);
+}
+
+/* Tags NHẪN THUẬT & THUỘC TÍNH */
+.hud-slot-tag {
+    min-width: 88px;
+    padding: 4px 7px;
+    border-radius: 8px;
+    user-select: none;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.hud-tag-title {
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+}
+
+.hud-tag-jutsu {
+    background: rgba(249, 115, 22, 0.15);
+    border: 1px solid rgba(251, 146, 60, 0.4);
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.22), inset 0 0 6px rgba(249, 115, 22, 0.12);
+}
+
+.hud-tag-jutsu .hud-tag-title {
+    color: #fdba74;
+    text-shadow: 0 0 8px rgba(251, 146, 60, 0.7);
+}
+
+.hud-tag-passive {
+    background: rgba(6, 182, 212, 0.15);
+    border: 1px solid rgba(34, 211, 238, 0.4);
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.22), inset 0 0 6px rgba(6, 182, 212, 0.12);
+}
+
+.hud-tag-passive .hud-tag-title {
+    color: #67e8f9;
+    text-shadow: 0 0 8px rgba(34, 211, 238, 0.7);
+}
+
+/* Hiệu ứng xoay phi tiêu & đập ngọc chakra */
+.hud-shuriken-spin {
+    animation: shurikenRotate 6s linear infinite;
+    filter: drop-shadow(0 0 4px #fb923c);
+}
+
+@keyframes shurikenRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hud-chakra-pulse {
+    animation: chakraOrbGlow 2.4s ease-in-out infinite;
+}
+
+@keyframes chakraOrbGlow {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 3px #22d3ee); }
+    50% { transform: scale(1.12); filter: drop-shadow(0 0 8px #67e8f9); }
+}
+
+/* CÁC Ô TRANG BỊ (SLOTS): Squircle 34x34px */
+.hud-equip-slot {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    min-height: 34px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* 1. Ô Trống: Nền kính mờ sạch sẽ, viền nét đứt mờ ảo */
+.hud-equip-slot.slot-empty {
+    background: rgba(15, 23, 42, 0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    cursor: default;
+}
+
+.hud-equip-slot.slot-active-empty {
+    border: 1px dashed rgba(251, 146, 60, 0.35);
+}
+
+.hud-equip-slot.slot-passive-empty {
+    border: 1px dashed rgba(34, 211, 238, 0.35);
+}
+
+.hud-slot-plus {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.22);
+    line-height: 1;
+    user-select: none;
+    transition: color 0.2s ease;
+}
+
+.hud-equip-slot.slot-empty:hover .hud-slot-plus {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* 2. Ô Đã Có Chiêu - Hàng 1: NHẪN THUẬT */
+.hud-equip-slot.slot-active {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.82) 0%, rgba(15, 23, 42, 0.92) 100%);
+    border: 1.2px solid rgba(249, 115, 22, 0.75);
+    box-shadow: inset 0 0 6px rgba(249, 115, 22, 0.3), 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.hud-equip-slot.slot-active:hover {
+    transform: translateY(-2px) scale(1.08);
+    border-color: #fbbf24;
+    box-shadow: 0 0 14px rgba(249, 115, 22, 0.65);
+    z-index: 10;
+}
+
+/* 3. Ô Đã Có Chiêu - Hàng 2: THUỘC TÍNH */
+.hud-equip-slot.slot-passive {
+    background: linear-gradient(135deg, rgba(14, 34, 61, 0.82) 0%, rgba(8, 20, 38, 0.92) 100%);
+    border: 1.2px solid rgba(6, 182, 212, 0.75);
+    box-shadow: inset 0 0 6px rgba(6, 182, 212, 0.3), 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.hud-equip-slot.slot-passive:hover {
+    transform: translateY(-2px) scale(1.08);
+    border-color: #38bdf8;
+    box-shadow: 0 0 14px rgba(6, 182, 212, 0.65);
+    z-index: 10;
+}
+
+/* Icon trong ô */
+.hud-slot-icon {
+    font-size: 15px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.9));
+    transform: translateY(-3px);
+    pointer-events: none;
+}
+
+/* 5 Chấm sao vàng nhỏ li ti biểu thị cấp độ */
+.hud-slot-stars {
+    position: absolute;
+    bottom: 2px;
+    inset-x: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5px;
+    pointer-events: none;
+}
+
+.slot-star {
+    font-size: 5px;
+    line-height: 1;
+    color: rgba(148, 163, 184, 0.25);
+    transition: all 0.2s ease;
+}
+
+.slot-star.active {
+    color: #facc15;
+    text-shadow: 0 0 3px rgba(250, 204, 21, 0.95);
+}
+
+.slot-star-cyan.active {
+    color: #facc15;
+    text-shadow: 0 0 3px rgba(250, 204, 21, 0.95);
+}
+
+/* Ô Đạt 6★ THỨC TỈNH: Golden Flame Aura & MAX 6★ Rực Lửa */
+.hud-equip-slot.slot-awakened {
+    background: linear-gradient(135deg, rgba(69, 26, 3, 0.92) 0%, rgba(20, 10, 5, 0.98) 100%);
+    border: 1.5px solid #fef08a;
+    animation: goldenFlameAura 1.5s ease-in-out infinite;
+}
+
+.hud-equip-slot.slot-awakened:hover {
+    transform: translateY(-2px) scale(1.1);
+    z-index: 20;
+}
+
+@keyframes goldenFlameAura {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(245, 158, 11, 0.9), inset 0 0 8px rgba(254, 240, 138, 0.65);
+        border-color: #fef08a;
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(251, 191, 36, 1), 0 0 32px rgba(234, 88, 12, 0.75), inset 0 0 14px rgba(255, 255, 255, 0.9);
+        border-color: #ffffff;
+    }
+}
+
+.hud-slot-awakened-badge {
+    position: absolute;
+    bottom: 0px;
+    background: linear-gradient(90deg, #ea580c 0%, #f59e0b 100%);
+    border: 0.5px solid #fef08a;
+    border-radius: 9999px;
+    padding: 0 3px;
+    font-size: 6px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 2px #451a03;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+    white-space: nowrap;
+    animation: badgeFlameShine 1.8s infinite ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes badgeFlameShine {
+    0%, 100% { filter: brightness(1) drop-shadow(0 0 2px #f59e0b); }
+    50% { filter: brightness(1.35) drop-shadow(0 0 6px #fde047); }
+}
+
+.gem-skill-slot {
+    display: none;
+}
+
+/* ==========================================
+   4. ĐỒNG HỒ ANIME PHÁT QUANG (CHÍNH GIỮA TRÊN CAO)
+   ========================================== */
+.anime-digital-clock-box {
+    background: rgba(11, 17, 32, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid rgba(245, 158, 11, 0.45);
+    border-radius: 1.15rem;
+    padding: 0.35rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(245, 158, 11, 0.2);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0 !important;
+}
+
+.anime-digital-clock-time {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.85rem;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 12px rgba(254, 240, 138, 0.75), 0 0 25px rgba(245, 158, 11, 0.5);
+    line-height: 1.1;
+}
+
+/* ==========================================
+   5. HUY HIỆU NỔI HẠ GỤC & ĐÁ CHAKRA (GÓC TRÊN BÊN PHẢI)
+   ========================================== */
+.floating-stat-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(148, 163, 184, 0.25);
+    border-radius: 9999px;
+    padding: 0.35rem 0.85rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.floating-stat-badge:hover {
+    transform: translateY(-2px);
+    border-color: rgba(245, 158, 11, 0.5);
+}
+
+/* ==========================================
+   6. MENU DEBUG GỌN GÀNG (POPOVER TOGGLE)
+   ========================================== */
+.hud-debug-popover {
+    position: absolute;
+    top: 2.6rem;
+    right: 0;
+    background: rgba(10, 15, 28, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(56, 189, 248, 0.4);
+    border-radius: 1rem;
+    padding: 0.65rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.2);
+    min-width: 175px;
+    z-index: 50;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.hud-debug-popover.hidden {
+    display: none;
+}
+
+/* ==========================================
+   7. DẢI HƯỚNG DẪN PHÍM WASD TỰ ĐỘNG MỜ DẦN
+   ========================================== */
+.hud-wasd-hint {
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hud-wasd-hint.fade-out {
+    opacity: 0 !important;
+    transform: translateY(12px) !important;
+    pointer-events: none !important;
+}
+
+/* ==========================================
+   8. BOSS ALERT BANNER ANIMATION
+   ========================================== */
+.boss-alert-banner {
+    animation: pulseBorder 1.2s infinite;
+}
+
+@media (max-width: 768px) {
+    .anime-digital-clock-box {
+        position: static;
+        transform: none;
+    }
+}
+

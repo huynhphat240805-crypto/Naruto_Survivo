@@ -12,29 +12,28 @@ window.HUDView = {
         if (this.element) return;
 
         const html = `
-        <div id="hudLayer" class="hidden fixed inset-0 pointer-events-none flex flex-col justify-between p-2 sm:p-4 z-10">
-            <!-- Top Bar: Thanh EXP Chakra + Thông số chính -->
-            <div class="w-full max-w-6xl mx-auto flex flex-col gap-2 pointer-events-none">
-                
-                <!-- 1. Thanh Chakra (EXP) -->
-                <div class="w-full px-1">
-                    <div class="hud-exp-track">
-                        <div id="expBarFill" class="hud-exp-fill" style="width: 0%;">
-                            <div class="hud-exp-shimmer"></div>
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-between px-3 text-[11px] sm:text-xs font-bold tracking-wider drop-shadow pointer-events-none">
-                            <span id="hudRankBadge" class="neon-cyan-text flex items-center gap-1.5">
-                                ⚡ CẤP BẬC: HỌC VIỆN (LV.1)
-                            </span>
-                            <span id="hudExpText" class="text-sky-100 font-mono text-[11px] font-black">CHAKRA: 0 / 15</span>
-                        </div>
+        <div id="hudLayer" class="hidden fixed inset-0 pointer-events-none flex flex-col justify-between z-10">
+            <!-- 1. Thanh Chakra (EXP) TRẢI DÀI 100% SÁT MÉP TRÊN CÙNG -->
+            <div class="hud-exp-container">
+                <div class="hud-exp-track">
+                    <div id="expBarFill" class="hud-exp-fill" style="width: 0%;">
+                        <div class="hud-exp-shimmer"></div>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-between px-4 text-[11px] sm:text-xs font-bold tracking-wider drop-shadow pointer-events-none">
+                        <span id="hudRankBadge" class="neon-cyan-text flex items-center gap-1.5">
+                            ⚡ CẤP BẬC: HỌC VIỆN (LV.1)
+                        </span>
+                        <span id="hudExpText" class="text-sky-100 font-mono text-[11px] font-black">CHAKRA: 0 / 15</span>
                     </div>
                 </div>
+            </div>
 
-                <!-- 2. Hàng thông số chính -->
-                <div class="flex items-start justify-between gap-2 px-1 mt-0.5">
+            <!-- Content Area: Dưới thanh EXP, căn lề 2 bên và đáy -->
+            <div class="hud-content-wrapper pointer-events-none">
+                <!-- Top Row: Khung trái (Avatar, Máu, 5+5 Slot) | Giữa (Đồng hồ) | Khung phải (Chỉ số) -->
+                <div class="hud-main-top-row pointer-events-none">
                     
-                    <!-- Khung trái: Avatar + HP + 2 hàng 5+5 Slots -->
+                    <!-- Khung trái: Avatar + HP + 2 hàng 5+5 Slots nép sát góc trái -->
                     <div class="hud-glass-card forehead-protector-box flex flex-col gap-2 pointer-events-auto">
                         <div class="flex items-center gap-3">
                             <div id="playerAvatarSlot" class="hud-avatar-circle flex items-center justify-center flex-shrink-0" title="Shinobi Làng Lá">
