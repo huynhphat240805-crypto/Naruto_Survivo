@@ -19,14 +19,6 @@ window.LobbyMenuView = {
         { id: 'armor', name: 'Áo Giáp Lưới Shinobi', icon: '🛡️', desc: 'Giảm 10% toàn bộ sát thương va chạm nhận vào', cost: 5000 }
     ],
 
-    missions: [
-        { id: 'm1', name: 'Tốt nghiệp Học viện Ninja', desc: 'Tham gia thi luyện ít nhất 1 trận đấu sinh tồn', rewardRyo: 1000, rewardScrolls: 0 },
-        { id: 'm2', name: 'Chiến Binh Quả Cảm', desc: 'Tiêu diệt tích lũy từ 100 kẻ địch trở lên', rewardRyo: 2000, rewardScrolls: 0 },
-        { id: 'm3', name: 'Sinh Tồn Bậc Thầy', desc: 'Sống sót thành công qua mốc 5 phút thi luyện', rewardRyo: 3000, rewardScrolls: 1 },
-        { id: 'm4', name: 'Khắc Tinh Rắn Khổng Lồ', desc: 'Đánh bại Boss Rắn Manda của Orochimaru', rewardRyo: 4000, rewardScrolls: 2 },
-        { id: 'm5', name: 'Huyền Thoại Hokage', desc: 'Đạt cấp độ nhẫn giả Cấp 20 trong một trận đấu', rewardRyo: 5000, rewardScrolls: 3 }
-    ],
-
     summonPool: [
         { name: "✦✦✦✦✦ Vĩ Thú Cửu Vĩ Kurama", desc: "Triệu hoán linh thú huyền thoại, +50% Sát thương toàn thể!", icon: "🦊" },
         { name: "✦✦✦✦ Cóc Khổng Lồ Gamabunta", desc: "Đại Hiệp Cóc với trường đao sắc bén quét sạch kẻ địch xung quanh!", icon: "🐸" },
@@ -261,7 +253,7 @@ window.LobbyMenuView = {
                             <!-- Chữ Tiêu Đề -->
                             <div class="flex-1 min-w-0 flex flex-col text-left pl-3.5 pr-2">
                                 <span class="fiery-play-title text-xl sm:text-2xl font-black tracking-wider text-white uppercase leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">CHƠI</span>
-                                <span class="text-xs sm:text-sm text-amber-100 font-bold truncate">Bước vào Đại Chiến Nhẫn Giả</span>
+                                <span id="lobbyPlaySubtitle" class="text-xs sm:text-sm text-amber-100 font-bold truncate">Bước vào Đại Chiến Nhẫn Giả</span>
                             </div>
                             <!-- Mũi tên trượt màu vàng kim -->
                             <span class="fiery-arrow text-2xl font-black text-amber-200 pr-1 transition-transform group-hover:translate-x-2 drop-shadow-[0_0_10px_#facc15]">›</span>
@@ -658,21 +650,6 @@ window.LobbyMenuView = {
             </div>
         </div>
 
-        <!-- 5. MODAL THÀNH TỰU -->
-        <div id="modalAchievements" class="shinobi-modal-backdrop">
-            <div class="shinobi-modal-content">
-                <div class="flex items-center justify-between border-b border-slate-700/80 pb-3 mb-4">
-                    <div class="flex items-center gap-2">
-                        <span class="text-2xl">🎖️</span>
-                        <h3 class="text-xl font-black text-purple-400 uppercase tracking-wide">NHIỆM VỤ & THÀNH TỰU NHẪN GIẢ</h3>
-                    </div>
-                    <button class="btn-close-submodal w-8 h-8 rounded-lg bg-slate-800 hover:bg-rose-600 text-slate-300 hover:text-white flex items-center justify-center font-bold text-sm transition cursor-pointer">✕</button>
-                </div>
-                <p class="text-xs text-slate-300 mb-4">Hoàn thành nhiệm vụ nhẫn giả cấp D đến cấp S để nhận thưởng Ryo và Cuộn giấy Triệu hồi.</p>
-                <div id="missionsListContainer" class="space-y-2.5 mb-4"></div>
-            </div>
-        </div>
-
         <!-- 6. MODAL BẠN BÈ -->
         <div id="modalFriends" class="shinobi-modal-backdrop">
             <div class="shinobi-modal-content">
@@ -752,43 +729,7 @@ window.LobbyMenuView = {
             </div>
         </div>
 
-        <!-- 8. MODAL BẢN ĐỒ -->
-        <div id="modalMap" class="shinobi-modal-backdrop">
-            <div class="shinobi-modal-content">
-                <div class="flex items-center justify-between border-b border-slate-700/80 pb-3 mb-4">
-                    <div class="flex items-center gap-2">
-                        <span class="text-2xl">🗺️</span>
-                        <h3 class="text-xl font-black text-amber-400 uppercase tracking-wide">CHIẾN TRƯỜNG NGŨ ĐẠI CƯỜNG QUỐC</h3>
-                    </div>
-                    <button class="btn-close-submodal w-8 h-8 rounded-lg bg-slate-800 hover:bg-rose-600 text-slate-300 hover:text-white flex items-center justify-center font-bold text-sm transition cursor-pointer">✕</button>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div class="border-2 border-amber-400 rounded-xl p-3 bg-slate-900/90 text-center shadow-lg">
-                        <div class="text-3xl mb-1">🌿</div>
-                        <div class="text-sm font-black text-amber-300">Thảo Nguyên Làng Lá</div>
-                        <div class="text-[10px] text-emerald-400 font-bold mb-2">ĐANG CHỌN • ĐỘ KHÓ: D-RANK</div>
-                        <p class="text-[11px] text-slate-400 mb-3">Đồng cỏ rộng lớn, kẻ địch phân bố đồng đều, lý tưởng để làm quen nhẫn thuật.</p>
-                        <button class="w-full py-1.5 rounded-lg bg-amber-500 text-slate-950 font-black text-xs">Đang Chọn</button>
-                    </div>
-                    <div class="border border-slate-700 rounded-xl p-3 bg-slate-900/60 text-center opacity-80 hover:opacity-100 transition">
-                        <div class="text-3xl mb-1">⚡</div>
-                        <div class="text-sm font-bold text-white">Thung Lũng Tận Cùng</div>
-                        <div class="text-[10px] text-amber-400 font-bold mb-2">ĐÃ MỞ KHÓA • ĐỘ KHÓ: B-RANK</div>
-                        <p class="text-[11px] text-slate-400 mb-3">Thác nước cuồn cuộn, sấm chớp liên hồi, quái vật xuất hiện dồn dập.</p>
-                        <button class="btn-select-map w-full py-1.5 rounded-lg bg-slate-700 hover:bg-amber-500 hover:text-slate-950 text-white font-bold text-xs transition cursor-pointer">Chọn Map</button>
-                    </div>
-                    <div class="border border-slate-700 rounded-xl p-3 bg-slate-900/60 text-center opacity-70">
-                        <div class="text-3xl mb-1">🌲</div>
-                        <div class="text-sm font-bold text-slate-300">Rừng Chết Thí Luyện</div>
-                        <div class="text-[10px] text-rose-400 font-bold mb-2">KHÓA • ĐỘ KHÓ: S-RANK</div>
-                        <p class="text-[11px] text-slate-400 mb-3">Cây cổ thụ độc, rắn khổng lồ xuất hiện ngay phút thứ 3 của trận đấu.</p>
-                        <button class="w-full py-1.5 rounded-lg bg-slate-800 text-slate-500 font-bold text-xs cursor-not-allowed">Sống sót >10p để mở</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 9. MODAL CÀI ĐẶT -->
+        <!-- 8. MODAL CÀI ĐẶT -->
         <div id="modalSettings" class="shinobi-modal-backdrop">
             <div class="shinobi-modal-content">
                 <div class="flex items-center justify-between border-b border-slate-700/80 pb-3 mb-4">
@@ -864,6 +805,24 @@ window.LobbyMenuView = {
 
         this.element = document.getElementById('startModal');
         if (!this.element) return;
+
+        // Nạp và khởi tạo module MapModal độc lập
+        if (!window.MapModal && !document.getElementById('scriptMapModal')) {
+            const s = document.createElement('script');
+            s.id = 'scriptMapModal';
+            s.src = 'SurvivalIO/Assets/_Project/Scripts/UI/Modals/Map/MapModal.js';
+            document.head.appendChild(s);
+        } else if (window.MapModal) {
+            window.MapModal.updateLobbyDisplay();
+        }
+
+        // Nạp và khởi tạo module AchievementModal độc lập
+        if (!window.AchievementModal && !document.getElementById('scriptAchievementModal')) {
+            const s = document.createElement('script');
+            s.id = 'scriptAchievementModal';
+            s.src = 'SurvivalIO/Assets/_Project/Scripts/UI/Modals/Achievement/AchievementModal.js';
+            document.head.appendChild(s);
+        }
 
         // 1. Nút Chơi Trực Tiếp
         const handleStartGame = (e) => {
@@ -941,13 +900,18 @@ window.LobbyMenuView = {
             });
         }
 
-        // 6. Nút Thành Tựu
+        // 5. Nút Thành Tựu
         const btnAchieve = document.getElementById('btnMenuAchievements');
         if (btnAchieve) {
             btnAchieve.addEventListener('click', () => {
-                if (window.SFXController) window.SFXController.uiOpen();
-                this.renderMissions();
-                this.openModal('modalAchievements');
+                if (window.AchievementModal) {
+                    window.AchievementModal.open();
+                } else {
+                    const s = document.createElement('script');
+                    s.src = 'SurvivalIO/Assets/_Project/Scripts/UI/Modals/Achievement/AchievementModal.js';
+                    s.onload = () => { if (window.AchievementModal) window.AchievementModal.open(); };
+                    document.head.appendChild(s);
+                }
             });
         }
 
@@ -982,10 +946,14 @@ window.LobbyMenuView = {
         }
         if (navMap) {
             navMap.addEventListener('click', () => {
-                if (window.SFXController) window.SFXController.uiOpen();
-                this.openModal('modalMap');
-                document.querySelectorAll('.nav-bottom-squircle-btn').forEach(b => b.classList.remove('active'));
-                navMap.classList.add('active');
+                if (window.MapModal) {
+                    window.MapModal.open();
+                } else {
+                    const s = document.createElement('script');
+                    s.src = 'SurvivalIO/Assets/_Project/Scripts/UI/Modals/Map/MapModal.js';
+                    s.onload = () => { if (window.MapModal) window.MapModal.open(); };
+                    document.head.appendChild(s);
+                }
             });
         }
         if (navSettings) {
@@ -1142,6 +1110,8 @@ window.LobbyMenuView = {
     closeAllModals() {
         if (window.SFXController) window.SFXController.uiClick();
         document.querySelectorAll('.shinobi-modal-backdrop').forEach(m => m.classList.remove('open'));
+        if (window.MapModal) window.MapModal.close();
+        if (window.AchievementModal) window.AchievementModal.close();
         document.querySelectorAll('.nav-bottom-squircle-btn').forEach(b => b.classList.remove('active'));
         const homeBtn = document.getElementById('navBtnHome');
         if (homeBtn) homeBtn.classList.add('active');
@@ -1387,52 +1357,6 @@ window.LobbyMenuView = {
         } else {
             alert("Bạn không đủ đồng Ryo!");
         }
-    },
-
-    renderMissions() {
-        const container = document.getElementById('missionsListContainer');
-        if (!container) return;
-
-        let html = '';
-        for (let i = 0; i < this.missions.length; i++) {
-            const m = this.missions[i];
-            const isClaimed = window.StorageManager.data.missions[m.id];
-            let rewardText = `+${m.rewardRyo.toLocaleString()} Ryo`;
-            if (m.rewardScrolls > 0) rewardText += ` & +${m.rewardScrolls} Cuộn`;
-
-            html += `
-                <div class="flex items-center justify-between bg-slate-900/90 border border-slate-800 rounded-xl p-3">
-                    <div class="flex items-center gap-3">
-                        <span class="text-xl">${isClaimed ? '✅' : '📜'}</span>
-                        <div>
-                            <div class="text-sm font-black text-white">${m.name}</div>
-                            <div class="text-[11px] text-slate-400">${m.desc}</div>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-xs font-bold text-amber-300 font-mono hidden sm:inline">${rewardText}</span>
-                        <button onclick="window.LobbyMenuView.claimMission('${m.id}')" class="px-3 py-1.5 rounded-lg font-bold text-xs transition cursor-pointer ${isClaimed ? 'bg-slate-800 text-slate-500 cursor-default' : 'bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-400 hover:to-green-500 text-white shadow'}">
-                            ${isClaimed ? 'Đã Nhận' : 'Nhận Thưởng'}
-                        </button>
-                    </div>
-                </div>
-            `;
-        }
-        container.innerHTML = html;
-    },
-
-    claimMission(missionId) {
-        if (window.StorageManager.data.missions[missionId]) return;
-        const m = this.missions.find(x => x.id === missionId);
-        if (!m) return;
-
-        window.StorageManager.data.missions[missionId] = true;
-        window.StorageManager.data.ryo += m.rewardRyo;
-        window.StorageManager.data.scrolls += m.rewardScrolls;
-        window.StorageManager.save();
-        if (window.SFXController) window.SFXController.levelUp();
-        this.renderMissions();
-        this.syncStats();
     },
 
     triggerSummon(count) {

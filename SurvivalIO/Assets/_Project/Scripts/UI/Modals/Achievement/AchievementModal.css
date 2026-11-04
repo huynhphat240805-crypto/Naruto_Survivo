@@ -1,0 +1,453 @@
+/* ============================================================================
+   MODULE: SurvivalIO/Assets/_Project/Scripts/UI/Modals/Achievement/AchievementModal.css
+   Giao diện Hệ Thống 3 Cột: Nhiệm Vụ Ngày (24h) | Nhiệm Vụ Tuần (7d) | Thành Tựu Huyền Thoại
+   - Viền Vàng 3D Hổ Phách Sang Trọng, Nút Đóng "✕" Tinh Tế
+   - 3 Cột Độc Lập Kèm Thanh Cuộn Mạ Vàng
+   - Đồng Hồ Đếm Ngược Thông Minh (Tự Động Chuyển Dạng < 24h)
+   - Ống Chakra Neon Xanh Ngọc & Nút Nhận Thưởng Rực Lửa
+   ============================================================================ */
+
+/* 1. Backdrop Toàn Màn Hình */
+.achievement-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: radial-gradient(circle at 50% 35%, rgba(15, 23, 42, 0.94) 0%, rgba(5, 8, 16, 0.98) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 2vh, 24px);
+    box-sizing: border-box;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.achievement-modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 2. Khung Nội Dung Modal Viền Vàng Kim Loại 3D */
+.achievement-modal-box {
+    width: 100%;
+    max-width: 1400px;
+    height: 94vh;
+    max-height: 900px;
+    background: linear-gradient(165deg, rgba(20, 28, 48, 0.98) 0%, rgba(10, 15, 28, 0.99) 100%);
+    border: 2px solid #f59e0b;
+    border-radius: 20px;
+    box-shadow: 0 0 35px rgba(245, 158, 11, 0.45),
+                0 16px 45px rgba(0, 0, 0, 0.9),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 0 20px rgba(245, 158, 11, 0.15);
+    display: flex;
+    flex-direction: column;
+    padding: clamp(14px, 1.8vh, 22px) clamp(16px, 2vw, 28px);
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 3. Header Tiêu Đề */
+.achievement-modal-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: clamp(10px, 1.4vh, 16px);
+    border-bottom: 1.5px solid rgba(148, 163, 184, 0.2);
+    flex-shrink: 0;
+}
+
+.achievement-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.achievement-header-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(180, 83, 9, 0.35) 100%);
+    border: 1.5px solid #f59e0b;
+    box-shadow: 0 0 14px rgba(245, 158, 11, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.achievement-header-title {
+    font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: linear-gradient(180deg, #ffffff 0%, #fef08a 30%, #f59e0b 70%, #d97706 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 10px rgba(245, 158, 11, 0.4));
+    line-height: 1.1;
+    margin: 0;
+}
+
+.achievement-header-subtitle {
+    font-size: clamp(0.72rem, 0.85vw, 0.85rem);
+    color: #94a3b8;
+    font-weight: 600;
+    margin-top: 3px;
+}
+
+.achievement-btn-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(30, 41, 59, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    color: #cbd5e1;
+    font-size: 16px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.achievement-btn-close:hover {
+    background: #ef4444;
+    border-color: #f87171;
+    color: #ffffff;
+    transform: scale(1.08);
+    box-shadow: 0 0 14px rgba(239, 68, 68, 0.6);
+}
+
+/* 4. Lưới 3 Cột Cân Đối */
+.achievement-3col-grid {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(12px, 1.5vw, 20px);
+    margin-top: clamp(10px, 1.4vh, 18px);
+    box-sizing: border-box;
+}
+
+/* 5. Cột Nhiệm Vụ */
+.achievement-column {
+    background: rgba(13, 19, 33, 0.75);
+    border: 1.5px solid rgba(148, 163, 184, 0.22);
+    border-radius: 16px;
+    padding: clamp(10px, 1.2vh, 14px) clamp(10px, 1vw, 14px);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    min-height: 0;
+}
+
+/* Đầu Cột (Column Header) */
+.achievement-col-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    flex-shrink: 0;
+}
+
+.achievement-col-title {
+    font-size: clamp(0.92rem, 1.1vw, 1.1rem);
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: 0.03em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.col-title-daily { color: #38bdf8; }
+.col-title-weekly { color: #fbbf24; }
+.col-title-legend { color: #f43f5e; }
+
+/* Đồng Hồ Đếm Ngược / Huy Hiệu Vĩnh Viễn */
+.achievement-col-timer {
+    font-size: clamp(0.68rem, 0.8vw, 0.78rem);
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: monospace;
+}
+
+.timer-daily {
+    background: rgba(2, 132, 199, 0.18);
+    border: 1px solid rgba(56, 189, 248, 0.45);
+    color: #7dd3fc;
+}
+
+.timer-weekly {
+    background: rgba(217, 119, 6, 0.18);
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    color: #fde68a;
+}
+
+.timer-permanent {
+    background: rgba(225, 29, 72, 0.18);
+    border: 1px solid rgba(244, 63, 94, 0.45);
+    color: #fda4af;
+    font-family: inherit;
+}
+
+/* Thanh Tiến Độ Hoàn Thành Cột */
+.achievement-col-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0 8px;
+    font-size: 0.72rem;
+    color: #94a3b8;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.achievement-col-summary span:last-child {
+    color: #fde047;
+    font-family: monospace;
+}
+
+/* Khung Cuộn Độc Lập */
+.achievement-col-scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* Thanh cuộn mạ vàng tinh xảo */
+    scrollbar-width: thin;
+    scrollbar-color: #f59e0b rgba(15, 23, 42, 0.8);
+}
+
+.achievement-col-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+
+.achievement-col-scroll::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.8);
+    border-radius: 9999px;
+}
+
+.achievement-col-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+    border-radius: 9999px;
+    box-shadow: 0 0 6px rgba(245, 158, 11, 0.5);
+}
+
+/* 6. Thẻ Nhiệm Vụ (Mission Card) */
+.achievement-card {
+    background: rgba(17, 24, 39, 0.9);
+    border: 1.5px solid rgba(148, 163, 184, 0.2);
+    border-radius: 12px;
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.achievement-card:hover {
+    border-color: rgba(245, 158, 11, 0.45);
+    transform: translateY(-1.5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* Tiêu Đề & Mô Tả */
+.achievement-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.achievement-card-title-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.achievement-card-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.achievement-card-title {
+    font-size: clamp(0.82rem, 0.95vw, 0.94rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+}
+
+.achievement-card-desc {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    line-height: 1.35;
+    margin-left: 26px;
+}
+
+/* Thanh Tiến Trình (Ống Chakra Xanh Ngọc Neon) */
+.achievement-progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+.achievement-progress-track {
+    flex: 1;
+    height: 7px;
+    background: rgba(8, 14, 26, 0.95);
+    border-radius: 9999px;
+    overflow: hidden;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
+    position: relative;
+}
+
+.achievement-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0284c7 0%, #38bdf8 60%, #67e8f9 100%);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+    border-radius: 9999px;
+    transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.achievement-progress-text {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #7dd3fc;
+    font-family: monospace;
+    min-width: 60px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+/* Hàng Dưới: Phần Thưởng & Nút Nhận */
+.achievement-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+    gap: 8px;
+}
+
+.achievement-rewards {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.reward-pill {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.74rem;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.reward-ryo {
+    color: #fde047;
+    border-color: rgba(245, 158, 11, 0.4);
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.15);
+}
+
+.reward-scroll {
+    color: #fca5a5;
+    border-color: rgba(239, 68, 68, 0.4);
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.15);
+}
+
+/* Nút Nhận Thưởng 3 Trạng Thái */
+.btn-achievement-claim {
+    padding: 5px 14px;
+    border-radius: 8px;
+    font-size: 0.76rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+/* 1. Chưa Đạt Mốc */
+.btn-achievement-claim.disabled {
+    background: rgba(30, 41, 59, 0.6);
+    color: #64748b;
+    border: 1px solid rgba(71, 85, 105, 0.4);
+    cursor: not-allowed;
+}
+
+/* 2. Đã Đạt Mốc - Bừng Sáng Viền Vàng Rực Lửa */
+.btn-achievement-claim.ready {
+    background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+    color: #ffffff;
+    border: 1.5px solid #fef08a;
+    box-shadow: 0 0 16px rgba(245, 158, 11, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    animation: claimPulse 1.8s infinite ease-in-out;
+}
+
+.btn-achievement-claim.ready:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 24px rgba(245, 158, 11, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+@keyframes claimPulse {
+    0%, 100% {
+        box-shadow: 0 0 14px rgba(245, 158, 11, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 24px rgba(251, 191, 36, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+}
+
+/* 3. Đã Nhận Thưởng */
+.btn-achievement-claim.claimed {
+    background: rgba(15, 23, 42, 0.65);
+    color: #475569;
+    border: 1px solid rgba(51, 65, 85, 0.45);
+    cursor: default;
+}
+
+/* 7. Responsive Cho Màn Hình Nhỏ */
+@media (max-width: 900px) {
+    .achievement-3col-grid {
+        grid-template-columns: 1fr;
+        overflow-y: auto;
+    }
+    .achievement-modal-box {
+        height: 98vh;
+        max-height: none;
+    }
+    .achievement-col-scroll {
+        max-height: 260px;
+    }
+}
+

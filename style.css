@@ -1,5 +1,7 @@
 @import url('./SurvivalIO/Assets/_Project/Scripts/UI/Lobby/LobbyMenu.css');
 @import url('./SurvivalIO/Assets/_Project/Scripts/UI/Views/HUDView.css');
+@import url('./SurvivalIO/Assets/_Project/Scripts/UI/Modals/Map/MapModal.css');
+@import url('./SurvivalIO/Assets/_Project/Scripts/UI/Modals/Achievement/AchievementModal.css');
 
 /* ============================================================================
    MODULE: style.css
