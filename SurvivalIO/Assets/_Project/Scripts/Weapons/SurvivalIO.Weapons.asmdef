@@ -1,0 +1,19 @@
+{
+    "name": "SurvivalIO.Weapons",
+    "rootNamespace": "SurvivalIO.Weapons",
+    "references": [
+        "SurvivalIO.Core",
+        "SurvivalIO.Combat",
+        "SurvivalIO.Infrastructure"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
+

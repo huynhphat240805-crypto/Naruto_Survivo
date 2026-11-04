@@ -1,0 +1,20 @@
+{
+    "name": "SurvivalIO.Progression",
+    "rootNamespace": "SurvivalIO.Progression",
+    "references": [
+        "SurvivalIO.Core",
+        "SurvivalIO.Weapons",
+        "SurvivalIO.Skills",
+        "SurvivalIO.Items"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
+

@@ -1,0 +1,20 @@
+{
+    "name": "SurvivalIO.Enemy",
+    "rootNamespace": "SurvivalIO.Enemy",
+    "references": [
+        "SurvivalIO.Core",
+        "SurvivalIO.Combat",
+        "SurvivalIO.Items",
+        "SurvivalIO.Infrastructure"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
+
