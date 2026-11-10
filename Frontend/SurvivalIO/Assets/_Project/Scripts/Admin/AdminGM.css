@@ -1,0 +1,588 @@
+/* ============================================================================
+   ADMIN & GM SANDBOX STYLES (AdminGM.css)
+   Thẩm mỹ Cyber Shinobi Glassmorphism Vàng Kim & Đỏ Neon
+   ============================================================================ */
+
+/* Nút [+] cạnh Ryo & Cuộn */
+.gm-plus-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #1e1b4b;
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1;
+    border: 1.5px solid #fef08a;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.7);
+    transition: all 0.15s ease;
+    margin-left: 6px;
+    user-select: none;
+}
+
+.gm-plus-btn:hover {
+    transform: scale(1.18);
+    background: #fef08a;
+    box-shadow: 0 0 14px #f59e0b;
+}
+
+.gm-plus-btn:active {
+    transform: scale(0.95);
+}
+
+/* Nút GM Sandbox trên thanh Header HUD trong trận */
+.gm-hud-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    height: 32px;
+    padding: 0 10px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.22) 0%, rgba(15, 23, 42, 0.95) 100%);
+    border: 1.5px solid rgba(245, 158, 11, 0.85);
+    color: #fef08a;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.35), inset 0 0 8px rgba(245, 158, 11, 0.15);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+    white-space: nowrap;
+}
+
+.gm-hud-btn:hover {
+    transform: translateY(-1px) scale(1.04);
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.45) 0%, rgba(180, 83, 9, 0.92) 100%);
+    border-color: #fbbf24;
+    color: #ffffff;
+    box-shadow: 0 0 18px rgba(245, 158, 11, 0.7), inset 0 0 10px rgba(254, 240, 138, 0.3);
+}
+
+.gm-hud-btn:active,
+.gm-hud-btn.active {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    border-color: #fef08a;
+    color: #020617;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.95);
+}
+
+.gm-hud-btn .gm-hud-bolt {
+    font-size: 12px;
+    filter: drop-shadow(0 0 4px #fbbf24);
+}
+
+.gm-hud-btn .gm-hud-label {
+    font-family: inherit;
+    font-weight: 900;
+}
+
+/* Fallback/Deprecated trigger ẩn mặc định */
+.gm-floating-trigger {
+    display: none !important;
+}
+
+/* Panel GM Sandbox */
+.gm-panel-container {
+    position: fixed;
+    top: 55px;
+    right: 18px;
+    width: 460px;
+    max-width: calc(100vw - 36px);
+    max-height: calc(100vh - 75px);
+    background: rgba(11, 15, 25, 0.96);
+    border: 2px solid #f59e0b;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(245, 158, 11, 0.35);
+    backdrop-filter: blur(14px);
+    z-index: 99995;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: #ffffff;
+    font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gm-panel-container.gm-minimized {
+    height: 48px;
+    overflow: hidden;
+}
+
+.gm-panel-header {
+    background: linear-gradient(90deg, #1e1b4b, #451a03);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1.5px solid rgba(245, 158, 11, 0.6);
+    cursor: move;
+}
+
+.gm-panel-title {
+    font-size: 14px;
+    font-weight: 900;
+    color: #fbbf24;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+}
+
+.gm-panel-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.gm-icon-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.gm-icon-btn:hover {
+    background: rgba(239, 68, 68, 0.8);
+    color: #ffffff;
+    border-color: #f87171;
+}
+
+.gm-panel-content {
+    padding: 12px 14px;
+    overflow-y: auto;
+    max-height: calc(100vh - 140px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Thanh Toggle Tác Vụ GM */
+.gm-toggles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.gm-toggle-card {
+    background: rgba(30, 41, 59, 0.7);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    user-select: none;
+}
+
+.gm-toggle-card:hover {
+    background: rgba(51, 65, 85, 0.85);
+    border-color: #f59e0b;
+}
+
+.gm-toggle-card.active {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(220, 38, 38, 0.25));
+    border-color: #fbbf24;
+    box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);
+}
+
+.gm-toggle-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.gm-toggle-switch {
+    width: 32px;
+    height: 18px;
+    border-radius: 9999px;
+    background: #475569;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.gm-toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.gm-toggle-card.active .gm-toggle-switch {
+    background: #f59e0b;
+}
+
+.gm-toggle-card.active .gm-toggle-switch::after {
+    left: 16px;
+}
+
+/* Các Section Nhóm */
+.gm-section {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(71, 85, 105, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.gm-section-title {
+    font-size: 11.5px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(71, 85, 105, 0.4);
+    padding-bottom: 4px;
+}
+
+/* Lưới Nút Thao Tác */
+.gm-btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+}
+
+.gm-action-btn {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #f8fafc;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 7px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+    text-align: center;
+}
+
+.gm-action-btn:hover {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #0f172a;
+    border-color: #fef08a;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+    transform: translateY(-1px);
+}
+
+.gm-action-btn.btn-danger {
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+.gm-action-btn.btn-danger:hover {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
+}
+
+/* Danh sách Quản lý Kỹ Năng */
+.gm-skill-search {
+    width: 100%;
+    background: rgba(2, 6, 23, 0.8);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 11px;
+    outline: none;
+}
+
+.gm-skill-search:focus {
+    border-color: #f59e0b;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+}
+
+.gm-skill-list {
+    max-height: 250px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-right: 4px;
+}
+
+.gm-skill-item {
+    background: rgba(30, 41, 59, 0.75);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 8px;
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    transition: all 0.15s ease;
+}
+
+.gm-skill-item:hover {
+    background: rgba(51, 65, 85, 0.9);
+    border-color: rgba(245, 158, 11, 0.6);
+}
+
+.gm-skill-item.has-skill {
+    border-left: 3.5px solid #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.gm-skill-info {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+    flex: 1;
+}
+
+.gm-skill-icon-img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 7px;
+    background: rgba(15, 23, 42, 0.95);
+    border: 1.5px solid rgba(245, 158, 11, 0.5);
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.35);
+    padding: 2px;
+    flex-shrink: 0;
+}
+
+.gm-skill-name {
+    font-size: 11px;
+    font-weight: 800;
+    color: #f8fafc;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gm-skill-level-pill {
+    font-size: 9.5px;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #94a3b8;
+    flex-shrink: 0;
+}
+
+.gm-skill-level-pill.active {
+    background: #0284c7;
+    color: #ffffff;
+}
+
+.gm-skill-level-pill.maxed {
+    background: linear-gradient(135deg, #f59e0b, #b45309);
+    color: #ffffff;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
+}
+
+.gm-skill-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.gm-skill-btn {
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: 800;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.gm-skill-btn.btn-add {
+    background: #10b981;
+    color: #ffffff;
+}
+.gm-skill-btn.btn-add:hover {
+    background: #059669;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+}
+
+.gm-skill-btn.btn-remove {
+    background: #ef4444;
+    color: #ffffff;
+}
+.gm-skill-btn.btn-remove:hover {
+    background: #dc2626;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.7);
+}
+
+.gm-skill-btn.btn-max {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #1e1b4b;
+}
+.gm-skill-btn.btn-max:hover {
+    background: #fbbf24;
+    box-shadow: 0 0 10px #f59e0b;
+}
+
+/* Modals chung */
+.gm-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+}
+
+.gm-modal-card {
+    background: linear-gradient(180deg, #0f172a, #020617);
+    border: 2px solid #f59e0b;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(245, 158, 11, 0.4);
+    width: 100%;
+    max-width: 580px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: #ffffff;
+}
+
+.gm-modal-header {
+    background: linear-gradient(90deg, #1e1b4b, #451a03);
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1.5px solid rgba(245, 158, 11, 0.5);
+}
+
+.gm-modal-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: #fbbf24;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.gm-modal-body {
+    padding: 16px 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.gm-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.gm-form-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #cbd5e1;
+}
+
+.gm-form-input, .gm-form-select {
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 8px 12px;
+    font-size: 13px;
+    outline: none;
+    font-family: inherit;
+}
+
+.gm-form-input:focus, .gm-form-select:focus {
+    border-color: #f59e0b;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+.gm-quick-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.gm-pill-btn {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    color: #fde68a;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.gm-pill-btn:hover {
+    background: #f59e0b;
+    color: #0f172a;
+}
+
+/* Bảng danh sách Giftcode */
+.gm-table-container {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid rgba(71, 85, 105, 0.4);
+    border-radius: 8px;
+}
+
+.gm-gift-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+}
+
+.gm-gift-table th {
+    background: rgba(30, 41, 59, 0.95);
+    padding: 8px 10px;
+    text-align: left;
+    color: #fbbf24;
+    font-weight: 800;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.gm-gift-table td {
+    padding: 8px 10px;
+    border-top: 1px solid rgba(51, 65, 85, 0.4);
+    color: #e2e8f0;
+}
+
+.gm-gift-table tr:hover td {
+    background: rgba(51, 65, 85, 0.5);
+}

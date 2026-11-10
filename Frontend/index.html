@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>NARUTO: Shinobi Survivor - Đại Chiến Nhẫn Giả</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- CSS Hệ thống UI & Modals -->
+    <link rel="stylesheet" href="SurvivalIO/Assets/_Project/Scripts/UI/Views/LobbyMenu.css">
+    <link rel="stylesheet" href="SurvivalIO/Assets/_Project/Scripts/UI/Views/HUDView.css">
+    <link rel="stylesheet" href="SurvivalIO/Assets/_Project/Scripts/UI/Modals/LevelUp/LevelUpModal.css">
+    <link rel="stylesheet" href="SurvivalIO/Assets/_Project/Scripts/UI/Modals/Map/MapModal.css">
+    <link rel="stylesheet" href="SurvivalIO/Assets/_Project/Scripts/UI/Modals/Upgrade/UpgradeModal.css">
+    <link rel="stylesheet" href="SurvivalIO/Assets/_Project/Scripts/UI/Modals/Achievement/AchievementModal.css">
+</head>
+<body class="relative text-white select-none bg-slate-950 overflow-hidden">
+
+    <!-- CANVAS CHIẾN TRƯỜNG CHÍNH -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- ======================================================================
+         HỆ THỐNG MODULE JAVASCRIPT CHUẨN KIẾN TRÚC SURVIVORIO
+         ====================================================================== -->
+
+    <!-- 1. Core Engine -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Core/Managers/GameLoop.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Core/Utilities/Camera.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Core/Utilities/SpriteRenderer.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Core/Controllers/MapController.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Core/Managers/GameManager.js"></script>
+
+    <!-- 2. Save System -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/SaveSystem/Managers/StorageManager.js"></script>
+
+    <!-- 3. Audio System -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Audio/Controllers/SFXController.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Audio/Controllers/MusicController.js"></script>
+
+    <!-- 4. Combat System -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Combat/Systems/DamageSystem.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Combat/HitDetection/HitboxCollision.js"></script>
+
+    <!-- 5. Weapons System -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Weapons/Projectiles/Projectiles.js"></script>
+
+    <!-- 6. Skills Modular Architecture -->
+    <!-- 6.1. Active Skills -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Skills/Active/Kunai.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Skills/Active/Rasengan.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Skills/Active/Chidori.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Skills/Active/Fireball.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Skills/Active/Clone.js"></script>
+    <!-- 6.2. Passive Attributes -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Skills/Passive/StatsPassive.js"></script>
+    <!-- 6.3. Upgrades & Evolution -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Skills/Upgrades/SkillEvolution.js"></script>
+    <!-- 6.4. Skill Controller -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Skills/Controllers/SkillManager.js"></script>
+
+    <!-- 7. Drop Items System -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Items/Drops/DropItems.js"></script>
+
+    <!-- 8. Enemy System -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Enemy/Health/EnemyHealth.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Enemy/Controllers/EnemyMovement.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Enemy/Controllers/EnemySpawner.js"></script>
+
+    <!-- 9. Boss System -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Boss/Controllers/BossManda.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Boss/Controllers/BossAkatsuki.js"></script>
+
+    <!-- 10. Player System -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Player/Controllers/PlayerStats.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Player/Controllers/PlayerController.js"></script>
+
+    <!-- 11. Progression System -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Progression/UpgradeSystem/TalentTree.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Progression/LevelSystem/LevelUpManager.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/Progression/GiftcodeSystem/GiftcodeSystem.js"></script>
+
+    <!-- 12. UI & Modals System -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/UI/Modals/Upgrade/UpgradeModal.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/UI/Modals/Achievement/AchievementModal.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/UI/Views/LobbyMenuView.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/UI/Views/HUDView.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/UI/Modals/Map/MapModal.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/UI/Modals/LevelUp/LevelUpModal.js"></script>
+    <script src="SurvivalIO/Assets/_Project/Scripts/UI/Modals/GameOver/GameOverModal.js"></script>
+
+    <!-- 13. Main Bootstrap Entry Point -->
+    <script src="SurvivalIO/Assets/_Project/Scripts/Core/Bootstrap/Main.js"></script>
+
+</body>
+</html>

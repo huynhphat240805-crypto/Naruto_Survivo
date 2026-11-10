@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Bao Cao Tien Do Va Cong Nghe - Naruto Survivor</title>
+<style>
+body { font-family: 'Times New Roman', serif; font-size: 13pt; line-height: 1.6; margin: 40px; }
+h1 { color: #b91c1c; text-align: center; text-transform: uppercase; }
+h2 { color: #1e3a8a; border-bottom: 2px solid #1e3a8a; padding-bottom: 5px; margin-top: 25px; }
+h3 { color: #047857; margin-top: 15px; }
+ul { margin-bottom: 15px; }
+li { margin-bottom: 6px; }
+.highlight { background-color: #fef08a; font-weight: bold; }
+.note-box { background-color: #f1f5f9; border-left: 5px solid #0284c7; padding: 12px; margin: 15px 0; }
+</style>
+</head>
+<body>
+
+<h1>BÁO CÁO DỰ ÁN GAME: NARUTO SHINOBI SURVIVOR</h1>
+<p style="text-align: center; font-style: italic;">Hệ thống Game Web 2D Sinh Tồn Nhẫn Giả - Tài Liệu Theo Dõi Dự Án</p>
+<hr>
+
+<h2>PHẦN I: NHỮNG GÌ ĐÃ HOÀN THÀNH XUẤT SẮC (TIẾN ĐỘ HIỆN TẠI ~90% FRONTEND)</h2>
+
+<h3>1. Lõi Đồ Họa & Gameplay Chiến Trường (In-Game Canvas 2D)</h3>
+<ul>
+    <li><b>Bản đồ vô tận (Infinite Map):</b> Thảm cỏ Làng Lá mượt mà, phân chia theo hệ thống Chunk giúp người chơi tự do di chuyển khám phá.</li>
+    <li><b>Nhân vật & Chuyển động:</b> Naruto, Itachi di chuyển 8 hướng mượt mà, hoạt ảnh chạy và tung chiêu sắc nét.</li>
+    <li><b>Đặc quyền Itachi (Susanoo Thần Giáp):</b> Kích hoạt bằng phím <b>SPACE</b>, hóa thân Thần Giáp khổng lồ, vung kiếm Totsuka chém sóng lửa (Slash Wave). Toàn bộ ảnh đã được lọc sạch nền trong suốt 100%, không còn lỗi khung caro hay hộp trắng.</li>
+    <li><b>Địa hình Vũng Nước:</b> Kích thước to/nhỏ ngẫu nhiên, tự động sinh theo Chunk vô tận, không đè lên cây cối hay chướng ngại vật, cơ chế làm chậm chính xác 30% tốc độ di chuyển khi đi qua.</li>
+</ul>
+
+<h3>2. Hệ Thống UI Sảnh Chờ & Các Modal Hoàn Chỉnh</h3>
+<ul>
+    <li><b>Đồ Giám Nhẫn Giả (10/10):</b> Đầy đủ 10 nhân vật huyền thoại kèm avatar sắc nét, phân chia 3 cấp bậc độ hiếm rõ ràng: <b>Rare</b> (Xanh dương), <b>Epic</b> (Tím), <b>Legend</b> (Vàng kim). Hệ thống nâng sao từ 1★ lên 5★ bằng mảnh tướng (mốc: 20, 50, 100, 200 mảnh).</li>
+    <li><b>Triệu Hồi Nhẫn Giả (Chiêu Mộ / Gacha):</b> Thiết kế bám sát Poster Naruto Hokage cực ngầu. Hiển thị số lượng cuộn thực tế, popup xem tỉ lệ quay (70% Rare, 25% Epic, 5% Legend), cơ chế quay trùng tự động quy đổi thành 30 mảnh tướng.</li>
+    <li><b>Cửa Hàng (Shop):</b> Bố cục 6 ô vật phẩm ngẫu nhiên bán các gói mảnh (2, 3, 5, 10 mảnh) bằng Ryo. Giới hạn mua 1 lần/món (Sold Out) và có đồng hồ đếm ngược 30 phút tự động làm mới hàng. Nút đóng [✕] căn chuẩn góc trên bên phải.</li>
+    <li><b>Hệ Thống Bản Đồ (Map Modal):</b> Lưới 12 ải thí luyện chiến trường từ Làng Lá đến Không Gian Thần Thoại Kaguya.</li>
+    <li><b>Hệ Thống Giftcode:</b> Modal nhập mã quà tặng nhận Ryo, Cuộn và Mảnh tướng chuẩn xác.</li>
+</ul>
+
+<h3>3. Trang Quản Trị & Phòng Thí Nghiệm GM (admin.html)</h3>
+<ul>
+    <li>Tách riêng độc lập với <code>index.html</code> để đảm bảo bảo mật và thẩm mỹ.</li>
+    <li>Nút <b>[+]</b> nhập trực tiếp Ryo và Cuộn vé triệu hồi tùy thích.</li>
+    <li>Bảng Quản Trị Giftcode: Cho phép Admin tự tạo mã mới kèm phần thưởng tương ứng.</li>
+    <li><b>Bảng GM Battle Sandbox trong trận:</b> Quái 0 Dame (bất tử để thử đòn), nút hồi chiêu Susanoo 0s để xả chiêu liên tục, tùy ý thêm/xóa 30 loại nhẫn thuật để kiểm tra hoạt ảnh sprite.</li>
+</ul>
+
+<h3>4. Cấu Trúc Dự Án Đã Được Dọn Dẹp Chuyên Nghiệp</h3>
+<ul>
+    <li>Gom toàn bộ tài nguyên hình ảnh về duy nhất thư mục: <code>SurvivalIO/Assets/_Project/Textures/</code> (phân mục rõ ràng: Player, Boss, Enemy, Map, UI, Icons).</li>
+    <li>Xóa bỏ các file rác, file trùng lặp cũ không còn sử dụng.</li>
+</ul>
+
+<hr>
+
+<h2>PHẦN II: NGĂN XẾP CÔNG NGHỆ (TECH STACK) & ĐỊNH HƯỚNG DEPLOY VERCEL</h2>
+
+<h3>1. Công Nghệ Phía Người Chơi (Frontend)</h3>
+<ul>
+    <li><b>HTML5 Canvas 2D API:</b> Xử lý đồ họa game 60 FPS, va chạm hitbox AABB và hiệu ứng hạt.</li>
+    <li><b>Vanilla JavaScript (ES6+ Modular):</b> Kiến trúc chia module độc lập, không phụ thuộc framework nặng nề, tải trang siêu tốc.</li>
+    <li><b>Tailwind CSS & CSS3 Animations:</b> Giao diện UI viền neon, đổ bóng 3D, hiệu ứng lá bay dập dờn.</li>
+</ul>
+
+<h3>2. Công Nghệ Phía Máy Chủ (Backend) & Cơ Sở Dữ Liệu (Chuẩn bị triển khai)</h3>
+<ul>
+    <li><b>Node.js & Express:</b> Xây dựng hệ thống REST API xử lý Đăng ký, Đăng nhập, Lưu tiến độ chơi an toàn.</li>
+    <li><b>SQLite3:</b> Cơ sở dữ liệu SQL siêu nhẹ, toàn bộ nằm gọn trong file <code>database.sqlite</code>, không cần cài đặt phần mềm MySQL nặng máy.</li>
+    <li><b>Socket.io (WebSockets):</b> Phục vụ tính năng phòng chơi Bạn Bè 4 người thời gian thực.</li>
+</ul>
+
+<div class="note-box">
+    <b>💡 ĐỊNH HƯỚNG QUAN TRỌNG KHI DEPLOY VERCEL:</b><br>
+    - <b>Vercel</b> là nền tảng số 1 thế giới để chạy <b>Frontend</b> (giao diện web, hình ảnh, canvas).<br>
+    - Tuy nhiên, Vercel là môi trường Serverless (không duy trì kết nối liên tục 24/7) nên không phù hợp để chạy Socket.io cho phòng 4 người.<br>
+    👉 <b>Giải pháp tối ưu chuẩn Studio:</b><br>
+    + <b>Frontend:</b> Deploy lên <b>Vercel</b> (tốc độ tải trang siêu nhanh, miễn phí).<br>
+    + <b>Backend & Socket:</b> Đặt trên <b>Render.com</b> hoặc <b>Railway.app</b> (miễn phí, giữ kết nối phòng chơi 4 người ổn định, không giật lag).<br>
+    + Hai bên kết nối ngầm với nhau qua API cực kỳ mượt mà.
+</div>
+
+</body>
+</html>

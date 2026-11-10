@@ -1,0 +1,284 @@
+/* ============================================================================
+   MODULE: SurvivalIO/Assets/_Project/Scripts/UI/Upgrade/UpgradeModal.css
+   Giao diện Cường Hóa Thiên Phú 13 Thuộc Tính Dạng Thẻ Bài Anime Ninja RPG:
+   - Lưới 3 Cột (grid-cols-1 md:grid-cols-2 lg:grid-cols-3)
+   - Thẻ Nền Tối Bán Trong Suốt (rgba(15, 23, 42, 0.85)) + Bo Góc Mềm Mại rounded-xl
+   - Viền Sáng Vàng Kim Mờ border-amber-500/30 + Hiệu Ứng Phát Sáng Khi Hover
+   - Bố Cục 3 Hàng Rõ Ràng:
+     * Hàng 1: [Icon Vuông Nhỏ] + [Tên & Mô Tả] + [Huy Hiệu Cấp Độ 0/5]
+     * Hàng 2: [Chỉ Số Tăng Xanh Ngọc Bảo] + [Vạch Tiến Trình Pips Bar]
+     * Hàng 3: [Nút Nâng Cấp Dạng Viên Thuốc (Pill-shaped) + Icon 🪙 + Giá Ryo]
+   ============================================================================ */
+
+/* 1. Backdrop Modal Cường Hóa */
+.shinobi-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: radial-gradient(circle at 50% 35%, rgba(15, 23, 42, 0.94) 0%, rgba(3, 7, 18, 0.98) 100%);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    box-sizing: border-box;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shinobi-modal-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 2. Khung Nội Dung Modal */
+.shinobi-modal-content {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.97) 0%, rgba(10, 15, 28, 0.99) 100%);
+    border: 2px solid #f59e0b;
+    border-radius: 20px;
+    box-shadow: 0 0 35px rgba(245, 158, 11, 0.35),
+                0 20px 40px rgba(0, 0, 0, 0.9),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    width: 100%;
+    max-width: 1100px;
+    max-height: 90vh;
+    padding: 20px 24px 16px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 3. Thẻ Thiên Phú (Talent Grid Card) - Bo Góc rounded-xl, Viền Vàng Kim Mờ */
+.talent-grid-card {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-radius: 0.75rem; /* rounded-xl */
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background-color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.talent-grid-card:hover {
+    transform: translateY(-2.5px);
+    border-color: rgba(245, 158, 11, 0.65);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75),
+                0 0 16px rgba(245, 158, 11, 0.28),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.talent-grid-card.talent-maxed {
+    border-color: rgba(16, 185, 129, 0.45);
+    background: rgba(6, 30, 20, 0.88);
+}
+
+.talent-grid-card.talent-maxed:hover {
+    border-color: rgba(52, 211, 153, 0.7);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.75),
+                0 0 16px rgba(16, 185, 129, 0.35);
+}
+
+/* 4. HÀNG 1: Header Card (Icon Nhỏ + Tên/Mô Tả + Cấp Độ) */
+.talent-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.talent-icon-slot {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+    border: 1.5px solid rgba(245, 158, 11, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.talent-info-block {
+    flex: 1;
+    min-width: 0;
+}
+
+.talent-title-text {
+    font-size: 0.88rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.talent-subtitle-tag {
+    font-size: 0.65rem;
+    color: #fbbf24;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.talent-desc-text {
+    font-size: 0.68rem;
+    color: #94a3b8;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 1px;
+}
+
+.talent-level-badge {
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-family: monospace;
+    font-size: 0.72rem;
+    font-weight: 900;
+    flex-shrink: 0;
+    background: rgba(3, 7, 18, 0.85);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    color: #fde68a;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.talent-level-badge.maxed {
+    border-color: rgba(52, 211, 153, 0.6);
+    color: #6ee7b7;
+    background: rgba(6, 78, 59, 0.5);
+}
+
+/* 5. HÀNG 2: Chỉ Số Tăng & Vạch Tiến Trình (Pips Bar) */
+.talent-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.talent-bonus-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 9px;
+    border-radius: 8px;
+    background: rgba(6, 78, 59, 0.55);
+    border: 1px solid rgba(52, 211, 153, 0.45);
+    color: #6ee7b7;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    width: fit-content;
+}
+
+.talent-pip-bar {
+    display: flex;
+    gap: 5px;
+    height: 6px;
+    width: 100%;
+}
+
+.talent-pip {
+    flex: 1;
+    height: 100%;
+    border-radius: 9999px;
+    background: rgba(51, 65, 85, 0.7);
+    border: 0.5px solid rgba(148, 163, 184, 0.2);
+    transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.talent-pip.active {
+    background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+    border-color: #6ee7b7;
+    box-shadow: 0 0 8px rgba(52, 211, 153, 0.65);
+}
+
+/* 6. HÀNG 3: Nút Nâng Cấp Dạng Viên Thuốc (Pill-shaped Button) */
+.talent-card-action {
+    margin-top: 4px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(51, 65, 85, 0.4);
+}
+
+.btn-talent-buy {
+    width: 100%;
+    border-radius: 9999px; /* Pill-shaped button */
+    font-weight: 800;
+    font-size: 0.78rem;
+    padding: 7px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+/* Nút Đủ Tiền Mua (Active & Bright) */
+.btn-talent-buy.can-buy {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 50%, #78350f 100%);
+    border: 1.5px solid #facc15;
+    color: #fffbeb;
+    box-shadow: 0 4px 14px rgba(217, 119, 6, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-talent-buy.can-buy:hover {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    transform: translateY(-1.5px) scale(1.02);
+    box-shadow: 0 6px 18px rgba(245, 158, 11, 0.6),
+                0 0 12px rgba(250, 204, 21, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.btn-talent-buy.can-buy:active {
+    transform: translateY(0) scale(0.99);
+}
+
+/* Nút Không Đủ Tiền (Disabled & Dimmed) */
+.btn-talent-buy.cant-afford {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1.5px solid rgba(100, 116, 139, 0.35);
+    color: #94a3b8;
+    opacity: 0.55;
+    cursor: not-allowed;
+    filter: grayscale(40%);
+}
+
+.btn-talent-buy.cant-afford:hover {
+    border-color: rgba(239, 68, 68, 0.5);
+    color: #f87171;
+}
+
+/* Nút Đã Đạt Cấp Tối Đa (Maxed) */
+.btn-talent-buy.max-level {
+    background: rgba(6, 78, 59, 0.65);
+    border: 1.5px solid #10b981;
+    color: #a7f3d0;
+    opacity: 0.92;
+    cursor: default;
+    box-shadow: inset 0 1px 0 rgba(167, 243, 208, 0.2);
+}

@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ke Hoach Trien Khai Tuong Lai - Naruto Survivor</title>
+<style>
+body { font-family: 'Times New Roman', serif; font-size: 13pt; line-height: 1.6; margin: 40px; }
+h1 { color: #1e3a8a; text-align: center; text-transform: uppercase; }
+h2 { color: #b91c1c; border-bottom: 2px solid #b91c1c; padding-bottom: 5px; margin-top: 25px; }
+h3 { color: #047857; margin-top: 15px; }
+ul { margin-bottom: 15px; }
+li { margin-bottom: 8px; }
+.step-card { background-color: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 15px; margin-bottom: 20px; }
+.badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-weight: bold; color: white; }
+.b1 { background-color: #2563eb; }
+.b2 { background-color: #7c3aed; }
+.b3 { background-color: #ea580c; }
+.b4 { background-color: #16a34a; }
+</style>
+</head>
+<body>
+
+<h1>KẾ HOẠCH PHÁT TRIỂN TƯƠNG LAI: NARUTO SHINOBI SURVIVOR</h1>
+<p style="text-align: center; font-style: italic;">Lộ Trình Về Đích - Backend SQL, Phòng Co-op 4 Người, Nội Tại Ẩn & Deploy</p>
+<hr>
+
+<h2>PHẦN III: KẾ HOẠCH HÀNH ĐỘNG CHI TIẾT (ROADMAP TỔNG THỂ)</h2>
+
+<div class="step-card">
+    <h3><span class="badge b1">GIAI ĐOẠN 1</span> TRIỂN KHAI BACKEND NODE.JS & DATABASE SQLITE (NGÀY MAI)</h3>
+    <ul>
+        <li><b>Xây dựng máy chủ Server:</b> Tạo thư mục <code>Server/</code> độc lập, khởi tạo <code>server.js</code> sử dụng Express.</li>
+        <li><b>Thiết kế Cơ sở dữ liệu SQLite:</b> Tạo 3 bảng dữ liệu chuẩn động:
+            <ul>
+                <li><i>Bảng Users:</i> Quản lý ID, Tên tài khoản, Mật khẩu mã hóa Bcrypt, Quyền hạn (Admin/Player), Số Ryo, Số Cuộn vé.</li>
+                <li><i>Bảng UserNinjas:</i> Quản lý tiến độ của 10 tướng (và các tướng mới sau này) gồm ID tướng, Số sao hiện tại (1★ - 5★), Số mảnh tích lũy.</li>
+                <li><i>Bảng Giftcodes:</i> Lưu trữ các mã quà tặng do Admin tạo, phần thưởng đi kèm và trạng thái sử dụng.</li>
+            </ul>
+        </li>
+        <li><b>Tích hợp Đăng Ký / Đăng Nhập:</b> Thêm modal tài khoản trên <code>index.html</code>, đồng bộ tự động dữ liệu từ SQL về <code>StorageManager.js</code>.</li>
+        <li><b>Phân quyền Admin:</b> Khóa bảo vệ trang <code>admin.html</code>, chỉ tài khoản Admin mới có quyền truy cập và chỉnh sửa số liệu trong Database.</li>
+    </ul>
+</div>
+
+<div class="step-card">
+    <h3><span class="badge b2">GIAI ĐOẠN 2</span> TÍCH HỢP TÍNH NĂNG TỔ ĐỘI BẠN BÈ 4 NGƯỜI (SOCKET.IO CO-OP)</h3>
+    <ul>
+        <li><b>Cơ chế Tạo Phòng bằng Mã Code:</b>
+            <ul>
+                <li>Người tạo phòng (Host) bấm <i>[Tạo Phòng]</i> -> Nhận mã phòng 6 ký tự (ví dụ: <code>ROOM-8889</code>).</li>
+                <li>3 người bạn còn lại bấm <i>[Tham Gia Phòng]</i> -> Nhập đúng mã code để vào chung phòng chờ.</li>
+            </ul>
+        </li>
+        <li><b>Đồng bộ dữ liệu thời gian thực:</b> Sử dụng <b>Socket.io</b> truyền tọa độ di chuyển, hướng quay mặt và chiêu thức tung ra của 4 người chơi cùng lúc trên màn hình chiến trường.</li>
+        <li><b>Tính năng Hồi sinh đồng đội:</b> Khi 1 trong 4 người hết máu, có thể đứng gần để hỗ trợ cứu đồng đội tiếp tục chiến đấu.</li>
+    </ul>
+</div>
+
+<div class="step-card">
+    <h3><span class="badge b3">GIAI ĐOẠN 3</span> MỞ RỘNG TƯỚNG MỚI & HỆ THỐNG NỘI TẠI ẨN / DUYÊN PHẬN</h3>
+    <ul>
+        <li><b>Thêm Nhẫn Giả Mới:</b> Bổ sung thêm các nhân vật được yêu thích (Obito, Tsunade, Orochimaru, Madara Lục Đạo...). Nhờ cấu trúc SQL dạng động, việc thêm tướng mới diễn ra tự động 100%, không cần viết lại cơ sở dữ liệu.</li>
+        <li><b>Hệ thống Nội Tại Ẩn (Hidden Passives & Synergies):</b> Tạo chiều sâu chiến thuật cực cuốn khi chơi tổ đội 4 người:
+            <ul>
+                <li><i>Huynh Đệ Uchiha (Itachi + Sasuke):</i> Cùng tăng 20% sát thương Hỏa Độn và tốc độ hồi Amaterasu.</li>
+                <li><i>Tình Thầy Trò (Jiraiya + Naruto):</i> Tự động hồi phục Chakra và tăng 25% tầm nổ của Rasengan.</li>
+                <li><i>Tam Nhẫn Làng Lá (Jiraiya + Tsunade + Orochimaru):</i> Tăng 30% phòng thủ và triệu hồi linh thú hỗ trợ.</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="step-card">
+    <h3><span class="badge b4">GIAI ĐOẠN 4</span> DEPLOY LÊN VERCEL & CẤP TÊN MIỀN CHÍNH THỨC</h3>
+    <ul>
+        <li><b>Đưa Frontend lên Vercel:</b> Đẩy mã nguồn giao diện lên Vercel để nhận link web chính thức, tải trang cực nhanh.</li>
+        <li><b>Đưa Backend Socket lên Render/Railway:</b> Chạy máy chủ duy trì phòng chơi 4 người 24/7.</li>
+        <li><b>Gắn Tên Miền Riêng (Custom Domain):</b> Trỏ tên miền chính thức của bạn (ví dụ: <code>narutosurvivor.online</code>).</li>
+        <li><b>Bàn giao & Vận hành:</b> Game chính thức hoạt động trên Internet, người chơi toàn cầu có thể tạo tài khoản từ con số 0 và tạo phòng chiến cùng bạn bè!</li>
+    </ul>
+</div>
+
+</body>
+</html>
